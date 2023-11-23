@@ -7,9 +7,9 @@ import java.util.List;
 /**
  * Member entity
  */
-public class Member {
-    String name;
-    String address;
+    public class Member {
+        String name;
+        String address;
     String phoneNum;
     String membershipRoute;
     List<Likes> likes; //스크랩한 게시물
