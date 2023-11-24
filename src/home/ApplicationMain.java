@@ -1,6 +1,7 @@
 package home;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.*;
@@ -49,12 +50,12 @@ class HeadPanel extends JPanel {
 
         //시간 동기화
         timer = new Timer(1000, new ActionListener() {
-             @Override
-             public void actionPerformed(ActionEvent e) {
-                 time = new Date();
-                 String formatedNow = formatter.format(time);
-                 jtime.setText(formatedNow);
-             }
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                time = new Date();
+                String formatedNow = formatter.format(time);
+                jtime.setText(formatedNow);
+            }
         });
         timer.start();
         setVisible(true);
@@ -153,6 +154,7 @@ class SearchPanel extends JPanel{
         basket_label.setBounds(410, 10, 55, 55);
         add(basket_label);
         //검색창
+
         search_txt = new JTextField(30);
         search_txt.setBackground(new Color(234,229,229));
         search_txt.setBounds(10,10,330,50);
@@ -242,10 +244,78 @@ class ListPanel extends JPanel{
     }
 }
 
+/**
+ * 상품페이지 화면
+ */
+class ProductPanel extends JPanel{
 
-//상품페이지 화면
-class ProductPanel extends JPanel {
+    ImageIcon product_icon;
+    Image product_img;
+    JLabel product_img_label, product_title_label, product_price_label;
+    JButton basket_btn, buy_btn;
+    JPanel buy_panel;
 
+    public ProductPanel(){
+        setLayout(null);
+        setSize(500,900);
+        setBackground(new Color(241,241,241));
+
+        //검색 패널
+        SearchPanel search_panel = new SearchPanel();
+        search_panel.setBounds(0,0,500,70);
+        add(search_panel);
+
+        //TODO 서버 연결시 수정해야 할 부분
+        //상품 사진
+        product_icon = new ImageIcon("src/home/product/3.png");
+        product_img = product_icon.getImage();
+        product_img = product_img.getScaledInstance(400,400, Image.SCALE_SMOOTH);
+        product_icon = new ImageIcon(product_img);
+        product_img_label = new JLabel(product_icon);
+        product_img_label.setBounds(40,90,400,400);
+        add(product_img_label);
+
+        //TODO 서버 연결시 수정해야 할 부분
+        //구매 패널
+        buy_panel = new JPanel();
+        buy_panel.setLayout(null);
+        buy_panel.setBackground(new Color(217,217,217));
+        buy_panel.setBounds(0,530,500,400);
+
+        product_title_label = new JLabel("갤럭시탭S9 플러스");
+        product_title_label.setFont(new Font("맑은고딕", Font.BOLD, 24));
+        product_title_label.setForeground(new Color(100,100,100));
+        product_title_label.setBounds(20, 40, 250,30);
+        buy_panel.add(product_title_label);
+
+        product_price_label = new JLabel("950,000");
+        product_price_label.setFont(new Font("맑은고딕", Font.BOLD, 34));
+        product_price_label.setForeground(new Color(100,100,100));
+        product_price_label.setBounds(20,65,250,60);
+        buy_panel.add(product_price_label);
+
+        basket_btn = new JButton("장바구니 담기");
+        basket_btn.setBackground(new Color(78,78,78));
+        basket_btn.setForeground(Color.white);
+        basket_btn.setBounds(270,45,190,60);
+        basket_btn.setFont(new Font("맑은 고딕",Font.BOLD,24));
+        buy_panel.add(basket_btn);
+
+
+        buy_btn = new JButton("구매하기");
+        buy_btn.setBackground(new Color(46,46,46));
+        buy_btn.setForeground(Color.white);
+        buy_btn.setFont(new Font("맑은 고딕", Font.BOLD, 37));
+        buy_btn.setBounds(20,130,450,90);
+        buy_panel.add(buy_btn);
+
+        add(buy_panel);
+        setVisible(true);
+
+        //TODO 장바구니, 구매하기 버튼에 addActionListener 추가하기
+
+
+    }
 
 
 }
@@ -253,6 +323,9 @@ class ProductPanel extends JPanel {
 class MypagePanel extends JPanel {}
 //설정 화면 (회원가입 및 로그인)
 class SettingPanel extends JPanel {}
+
+
+
 
 
 public class ApplicationMain extends JFrame{
@@ -264,10 +337,23 @@ public class ApplicationMain extends JFrame{
         HeadPanel head_panel = new HeadPanel();
         head_panel.setBounds(0,0,500,45);
         add(head_panel);
+        /**
+         * 바디 부분만
+         * HomePanel
+         * ProductPanel
+         * MypagePanel
+         * SettingPanel
+         * 로 갈아끼시면 뷰를 다양하게 보실 수 있습니다
+         */
         //바디
-        HomePanel home_panel = new HomePanel();
-        home_panel.setBounds(0,45,500,765);
-        add(home_panel);
+        //1. HomePanel
+        //HomePanel home_panel = new HomePanel();
+        //home_panel.setBounds(0,45,500,765);
+        //add(home_panel);
+        //2. ProductPanel
+        ProductPanel product_panel = new ProductPanel();
+        product_panel.setBounds(0,45,500,765);
+        add(product_panel);
         //푸터
         FootPanel foot_panel = new FootPanel();
         foot_panel.setBounds(0,810,500,100);
