@@ -1,7 +1,13 @@
 package home;
 
+import home.library.RoundJTextField;
+import home.library.RoundedButton;
+
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class BodyPanel {
     /**
@@ -146,7 +152,101 @@ class ProductPanel extends JPanel{
 
 }
 
-//마이페이지 화면
+//3. 판매자 글 작성 페이지
+class WritePostPanel extends JPanel implements ActionListener {
+    ImageIcon img_icon;
+    Image img;
+    JLabel img_label, title_label, price_label;
+    RoundedButton complete_btn;
+    JButton img_btn;
+    JTextField title_txt, price_txt;
+
+    public WritePostPanel() {
+        setLayout(null);
+        setBackground(Color.white);
+
+        //TODO 서버연결
+        //사진선택
+        img_icon = new ImageIcon("src/home/image/icon/chooseimg.png");
+        img = img_icon.getImage();
+        img = img.getScaledInstance(380, 380, Image.SCALE_SMOOTH);
+        img_icon = new ImageIcon(img);
+        img_btn = new JButton(img_icon);
+        img_btn.setBounds(50, 20, 380, 380);
+        img_btn.addActionListener(this);
+        img_btn.setBackground(Color.white);
+        img_btn.setBorder(BorderFactory.createLineBorder(Color.white));
+
+        add(img_btn);
+
+        //상품명 라벨
+        title_label = new JLabel("상품명");
+        title_label.setBounds(40,400,120,80);
+        title_label.setFont(new Font("마루 부리OTF",Font.BOLD,22));
+        title_label.setForeground(new Color(33,39,37));
+        add(title_label);
+        //상품명
+        title_txt = new RoundJTextField(30);
+        title_txt.setBackground(new Color(157,184,177));
+        title_txt.setBounds(160,415,270,50);
+        title_txt.setFont(new Font("마루 부리OTF",Font.PLAIN,22));
+        title_txt.setText("");
+        title_txt.setBorder(new LineBorder(new Color(157,184,177)));
+
+        add(title_txt);
+
+        //가격 라벨
+        title_label = new JLabel("가격");
+        title_label.setBounds(40,470,120,80);
+        title_label.setFont(new Font("마루 부리OTF",Font.BOLD,22));
+        title_label.setForeground(new Color(33,39,37));
+        add(title_label);
+        //가격
+        price_txt = new RoundJTextField(30);
+        price_txt.setBackground(new Color(157,184,177));
+        price_txt.setBounds(160,485,270,50);
+        price_txt.setFont(new Font("마루 부리OTF",Font.PLAIN,22));
+        price_txt.setText("");
+        price_txt.setBorder(new LineBorder(new Color(157,184,177)));
+        add(price_txt);
+
+        //작성 완료
+        complete_btn = new RoundedButton("작성 완료");
+        complete_btn.setBackground(new Color(33,39,37));
+        complete_btn.setForeground(Color.white);
+        complete_btn.setFont(new Font("맑은 고딕", Font.BOLD, 37));
+        complete_btn.setBounds(16,580,450,90);
+
+        add(complete_btn);
+
+        setVisible(true);
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Object source = e.getSource();
+        if(source == img_btn){
+            JFileChooser chooser = new JFileChooser();
+            int r = chooser.showOpenDialog(this);
+            if(r==JFileChooser.APPROVE_OPTION){
+                String name = chooser.getSelectedFile().getAbsolutePath();
+                //사진 재설정
+                //TODO 왜 UI에 적용 안될까요..?
+                System.out.println(name);
+                img_icon = new ImageIcon(name);
+                img = img_icon.getImage();
+                img = img.getScaledInstance(380, 380, Image.SCALE_SMOOTH);
+                img_icon = new ImageIcon(img);
+                img_btn = new JButton(img_icon);
+                img_btn.setBounds(50, 20, 380, 380);
+                repaint();
+            }
+        }
+    }
+}
+
+
 class MypagePanel extends JPanel {}
 //설정 화면 (회원가입 및 로그인)
 class SettingPanel extends JPanel {}

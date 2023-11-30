@@ -1,8 +1,8 @@
 package home;
 
-import home.TopBarPanel;
 import home.library.RoundJPassWordField;
 import home.library.RoundJTextField;
+import home.library.RoundedButton;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -14,7 +14,7 @@ public class MainpagePanel extends JPanel {
     JLabel logo, id, pwd;
     RoundJTextField id_txt;
     RoundJPassWordField pwd_txt;
-    JButton login_btn,sign_btn;
+    RoundedButton login_btn,sign_btn;
 
 
     public MainpagePanel(){
@@ -36,17 +36,17 @@ public class MainpagePanel extends JPanel {
         add(logo);
 
 
-        //회원가입 라벨
+        //아이디 라벨
         id = new JLabel("아이디");
-        id.setBounds(80,420,80,80);
+        id.setBounds(80,410,80,80);
         id.setFont(new Font("마루 부리OTF",Font.BOLD,22));
         id.setForeground(new Color(33,39,37));
         add(id);
 
-        //회원가입
+        //아이디
         id_txt = new RoundJTextField(30);
         id_txt.setBackground(new Color(157,184,177));
-        id_txt.setBounds(180,435,230,50);
+        id_txt.setBounds(180,425,230,50);
         id_txt.setFont(new Font("마루 부리OTF",Font.PLAIN,22));
         id_txt.setText("");
         id_txt.setBorder(new LineBorder(new Color(157,184,177)));
@@ -54,7 +54,7 @@ public class MainpagePanel extends JPanel {
 
         //비밀번호 라벨
         pwd = new JLabel("비밀번호");
-        pwd.setBounds(60,510,120,80);
+        pwd.setBounds(60,490,120,80);
         pwd.setFont(new Font("마루 부리OTF",Font.BOLD,22));
         pwd.setForeground(new Color(33,39,37));
         add(pwd);
@@ -62,7 +62,7 @@ public class MainpagePanel extends JPanel {
         //비밀번호
         pwd_txt = new RoundJPassWordField(30);
         pwd_txt.setBackground(new Color(157,184,177));
-        pwd_txt.setBounds(180,525,230,50);
+        pwd_txt.setBounds(180,505,230,50);
         pwd_txt.setFont(new Font("마루 부리OTF",Font.PLAIN,22));
         pwd_txt.setText("");
         pwd_txt.setBorder(new LineBorder(new Color(157,184,177)));
@@ -70,20 +70,20 @@ public class MainpagePanel extends JPanel {
 
         //TODO 서버연결
         //로그인
-        login_btn = new JButton("로그인");
+        login_btn = new RoundedButton("로그인");
         login_btn.setBackground(new Color(33,39,37));
         login_btn.setForeground(Color.white);
         login_btn.setFont(new Font("맑은 고딕", Font.BOLD, 22));
-        login_btn.setBounds(90,625,135,55);
+        login_btn.setBounds(90,605,135,55);
         add(login_btn);
 
         //TODO 서버연결
         //회원가입
-        sign_btn = new JButton("회원가입");
+        sign_btn = new RoundedButton("회원가입");
         sign_btn.setBackground(new Color(33,39,37));
         sign_btn.setForeground(Color.white);
         sign_btn.setFont(new Font("맑은 고딕", Font.BOLD, 22));
-        sign_btn.setBounds(260,625,135,55);
+        sign_btn.setBounds(260,605,135,55);
         add(sign_btn);
 
 
