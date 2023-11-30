@@ -149,7 +149,6 @@ class ProductPanel extends JPanel{
 
         //TODO 장바구니, 구매하기 버튼에 addActionListener 추가하기
     }
-
 }
 
 //3. 판매자 글 작성 페이지
@@ -232,24 +231,84 @@ class WritePostPanel extends JPanel implements ActionListener {
             if(r==JFileChooser.APPROVE_OPTION){
                 String name = chooser.getSelectedFile().getAbsolutePath();
                 //사진 재설정
-                //TODO 왜 UI에 적용 안될까요..?
-                System.out.println(name);
-                img_icon = new ImageIcon(name);
-                img = img_icon.getImage();
-                img = img.getScaledInstance(380, 380, Image.SCALE_SMOOTH);
-                img_icon = new ImageIcon(img);
-                img_btn = new JButton(img_icon);
+                ImageIcon newImgIcon = new ImageIcon(name);
+                Image newImg = newImgIcon.getImage();
+                newImg = newImg.getScaledInstance(380, 380, Image.SCALE_SMOOTH);
+                newImgIcon = new ImageIcon(newImg);
+                img_btn.setIcon(newImgIcon);
                 img_btn.setBounds(50, 20, 380, 380);
-                repaint();
+
+
             }
         }
     }
+}
+
+//TODO
+//5. 장바구니 페이지
+class BasketPanel extends JPanel{
+    ImageIcon product_icon;
+    Image product_img;
+    JLabel product_img_label, product_title_label, product_price_label;
+    JButton basket_btn, buy_btn;
+    JPanel buy_panel;
+    public BasketPanel(){
+        setLayout(null);
+        setSize(500,700);
+        setBackground(Color.white);
+
+        //TODO 서버 연결시 수정해야 할 부분
+        //상품 사진
+        product_icon = new ImageIcon("src/home/image/product/3.png");
+        product_img = product_icon.getImage();
+        product_img = product_img.getScaledInstance(370,370, Image.SCALE_SMOOTH);
+        product_icon = new ImageIcon(product_img);
+        product_img_label = new JLabel(product_icon);
+        product_img_label.setBounds(40,20,370,370);
+        add(product_img_label);
+
+        //TODO 서버 연결시 수정해야 할 부분
+        //구매 패널
+        buy_panel = new JPanel();
+        buy_panel.setLayout(null);
+        buy_panel.setBackground(new Color(157,184,177));
+        buy_panel.setBounds(0,430,500,255);
+
+        product_title_label = new JLabel("갤럭시탭S9 플러스");
+        product_title_label.setFont(new Font("맑은고딕", Font.BOLD, 24));
+        product_title_label.setForeground(new Color(72,84,81));
+        product_title_label.setBounds(20, 40, 250,30);
+        buy_panel.add(product_title_label);
+
+        product_price_label = new JLabel("950,000");
+        product_price_label.setFont(new Font("맑은고딕", Font.BOLD, 34));
+        product_price_label.setForeground(new Color(72,84,81));
+        product_price_label.setBounds(20,65,250,60);
+        buy_panel.add(product_price_label);
+
+        basket_btn = new JButton("장바구니 담기");
+        basket_btn.setBackground(new Color(72,84,81));
+        basket_btn.setForeground(Color.white);
+        basket_btn.setBounds(270,45,190,60);
+        basket_btn.setFont(new Font("맑은 고딕",Font.BOLD,24));
+        buy_panel.add(basket_btn);
+
+        buy_btn = new JButton("구매하기");
+        buy_btn.setBackground(new Color(33,39,37));
+        buy_btn.setForeground(Color.white);
+        buy_btn.setFont(new Font("맑은 고딕", Font.BOLD, 37));
+        buy_btn.setBounds(20,135,450,90);
+        buy_panel.add(buy_btn);
+        add(buy_panel);
+        setVisible(true);
+
+        //TODO 장바구니, 구매하기 버튼에 addActionListener 추가하기
+    }
+
 }
 
 
 class MypagePanel extends JPanel {}
 //설정 화면 (회원가입 및 로그인)
 class SettingPanel extends JPanel {}
-//상품주문페이지 화면
-class BuyPanel extends JPanel {}
-//회원가입 페이지
+

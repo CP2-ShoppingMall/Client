@@ -41,13 +41,14 @@ public class ApplicationMain extends JFrame{
         add(foot_panel);
         setVisible(true);
 
+//        //4. 메인 페이지
+//        //TODO 메인페이지 실행시에 위에 헤드, 바디, 푸터 모두 주석처리하고 실행
+//        MainpagePanel mainpage_panel = new MainpagePanel();
+//        mainpage_panel.setBounds(0,0,500,1200);
+//        add(mainpage_panel);
+//        setVisible(true);
 
-/*        //메인 페이지
-        //TODO 메인페이지 실행시에 위에 헤드, 바디, 푸터 모두 주석처리하고 실행
-        MainpagePanel mainpage_panel = new MainpagePanel();
-        mainpage_panel.setBounds(0,0,500,1200);
-        add(mainpage_panel);
-        setVisible(true);*/
+
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
