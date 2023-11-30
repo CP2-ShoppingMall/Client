@@ -29,10 +29,15 @@ public class ApplicationMain extends JFrame{
 //        ProductPanel product_panel = new ProductPanel();
 //        product_panel.setBounds(0,200,500,700);
 //        add(product_panel);
-        //3. 판매자 글 작성 페이지
-        WritePostPanel write_post_panel = new WritePostPanel();
-        write_post_panel.setBounds(0,200,500,700);
-        add(write_post_panel);
+//       //3. 판매자 글 작성 페이지
+//        WritePostPanel write_post_panel = new WritePostPanel();
+//        write_post_panel.setBounds(0,200,500,700);
+//        add(write_post_panel);
+        //4. 장바구니 페이지
+        BasketPanel basket_panel
+                = new BasketPanel();
+        basket_panel.setBounds(0,200,500,700);
+        add(basket_panel);
 
 
         //푸터
