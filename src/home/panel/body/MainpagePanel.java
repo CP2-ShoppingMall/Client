@@ -1,8 +1,9 @@
-package home;
+package home.panel.body;
 
 import home.library.RoundJPassWordField;
 import home.library.RoundJTextField;
 import home.library.RoundedButton;
+import home.panel.head.TopBarPanel;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;

@@ -1,9 +1,9 @@
-package home;
+package home.panel.footer;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 
-class FootPanel extends JPanel {
+public class FootPanel extends JPanel {
     JLabel home_label, mypage_label, setting_label;
     ImageIcon home_icon, mypage_icon, setting_icon;
     Image home_img, mypage_img, setting_img;
