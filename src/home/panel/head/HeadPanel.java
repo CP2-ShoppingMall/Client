@@ -9,6 +9,7 @@ import java.awt.*;
 //Body
 //홈 화면
 public class HeadPanel extends JPanel {
+    public SearchPanel search_panel;
     public HeadPanel(){
         setSize(500, 200);
         setBackground(Color.white);
@@ -18,7 +19,7 @@ public class HeadPanel extends JPanel {
         logo_panel.setBounds(0,0,500,90);
         add(logo_panel);
         //검색 패널
-        SearchPanel search_panel = new SearchPanel();
+        search_panel = new SearchPanel();
         search_panel.setBounds(0,90,500,70);
         add(search_panel);
     }

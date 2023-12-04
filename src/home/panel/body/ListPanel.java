@@ -21,6 +21,7 @@ public class ListPanel extends JPanel {
     JPanel product_list_panel;
     JButton pre, next;
     int row, column;
+    public HeadPanel head_panel;
     public ListPanel(){
         setSize(500,700);
         setLayout(null);
@@ -34,7 +35,7 @@ public class ListPanel extends JPanel {
         product_list_panel.setBackground(Color.white);
 
         //헤더
-        HeadPanel head_panel = new HeadPanel();
+        head_panel = new HeadPanel();
         head_panel.setBounds(0,0,500,160);
         add(head_panel);
         //각 패널에 상품 배정 (화면에 4개씩 끊어서 보여줍시다.. 스크롤 기능 노력해봤는데 실패함)
