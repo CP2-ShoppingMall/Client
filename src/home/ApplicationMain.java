@@ -1,5 +1,5 @@
 package home;
-import home.panel.body.RegisterPanel;
+import home.panel.body.*;
 import home.panel.footer.FootPanel;
 import home.panel.head.TopBarPanel;
 
@@ -40,13 +40,13 @@ public class ApplicationMain extends JFrame{
 //        mypage_panel.setBounds(0,45,500,835);
 //        add(mypage_panel);
 //        //6. 메인 페이지
-//        MainpagePanel mainpage_panel = new MainpagePanel();
-//        mainpage_panel.setBounds(0,0,500,1200);
-//        add(mainpage_panel);
+        MainpagePanel mainpage_panel = new MainpagePanel();
+        mainpage_panel.setBounds(0,0,500,1200);
+        add(mainpage_panel);
 //        //7. 회원가입 페이지
-        RegisterPanel register_panel = new RegisterPanel();
-        register_panel.setBounds(0,0,500,1200);
-        add(register_panel);
+//        RegisterPanel register_panel = new RegisterPanel();
+//        register_panel.setBounds(0,0,500,1200);
+//        add(register_panel);
 
         //푸터
         FootPanel foot_panel = new FootPanel();
