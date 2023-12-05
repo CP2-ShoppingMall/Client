@@ -11,7 +11,7 @@ public class ProductPanel extends JPanel {
     ImageIcon product_icon;
     Image product_img;
     JLabel product_img_label, product_title_label, product_price_label;
-    JButton basket_btn, buy_btn;
+    public JButton basket_btn, buy_btn;
     JPanel buy_panel;
     public ProductPanel(){
         setLayout(null);

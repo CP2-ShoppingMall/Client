@@ -11,7 +11,7 @@ public class BasketPanel extends JPanel {
     ImageIcon product_icon;
     Image product_img;
     JLabel product_img_label, product_title_label, product_price_label, basket_label;
-    JButton buy_btn;
+    public JButton buy_btn;
     JPanel buy_panel;
     JCheckBox buy_cb;
     public BasketPanel(){
