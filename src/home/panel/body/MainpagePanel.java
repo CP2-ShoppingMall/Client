@@ -15,7 +15,7 @@ public class MainpagePanel extends JPanel {
     JLabel logo, id, pwd;
     RoundJTextField id_txt;
     RoundJPassWordField pwd_txt;
-    RoundedButton login_btn,sign_btn;
+    public RoundedButton login_btn,sign_btn;
 
 
     public MainpagePanel(){
