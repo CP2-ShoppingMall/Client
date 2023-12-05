@@ -13,8 +13,8 @@ public class MainpagePanel extends JPanel {
     ImageIcon logo_icon;
     Image logo_img;
     JLabel logo, id, pwd;
-    RoundJTextField id_txt;
-    RoundJPassWordField pwd_txt;
+    public RoundJTextField id_txt;
+    public RoundJPassWordField pwd_txt;
     public RoundedButton login_btn,sign_btn;
 
 

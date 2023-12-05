@@ -14,8 +14,8 @@ public class RegisterPanel extends JPanel {
     ImageIcon logo_icon;
     Image logo_img;
     JLabel logo, id, pwd, phone, address, email;
-    RoundJTextField id_txt, phone_txt, address_txt, email_txt;
-    RoundJPassWordField pwd_txt;
+    public RoundJTextField id_txt, phone_txt, address_txt, email_txt;
+    public RoundJPassWordField pwd_txt;
     public RoundedButton sign_btn;
 
 

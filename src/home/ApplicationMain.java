@@ -1,23 +1,21 @@
 package home;
+
 import home.panel.body.*;
 import home.panel.footer.FootPanel;
 import home.panel.head.TopBarPanel;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import kimit.api.ClientException;
 import kimit.api.ClientWrapper;
 
 import javax.swing.*;
-import java.awt.*;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ApplicationMain extends JFrame
 {
-    private JPanel[] Panels;
+    private final JPanel[] Panels;
 
-    public ApplicationMain(){
+    public ApplicationMain()
+    {
         setLayout(null);
         setTitle("CP2-ShoppingMall");
         setSize(500,1200);
@@ -59,94 +57,65 @@ public class ApplicationMain extends JFrame
         register_panel.setBounds(0,0,500,1200);
         add(register_panel);
 
-        Panels = new JPanel[]{list_panel, product_panel, write_post_panel, basket_panel, mypage_panel, mainpage_panel, register_panel};
-
-        setPanelVisible(5);
+        Panels = new JPanel[] { mainpage_panel, register_panel, list_panel, product_panel, mypage_panel, basket_panel, write_post_panel };
 
         //푸터
         FootPanel foot_panel = new FootPanel();
         foot_panel.setBounds(0,880,500,100);
         add(foot_panel);
-        JPanel[] s=new JPanel[]{list_panel, product_panel,write_post_panel,basket_panel,mypage_panel,mainpage_panel,register_panel};
-        add(s[5]);
-        //list_panel 0
-        //product_panel 1
-        //write_post_panel 2
-        //basket_panel 3
-        //mypage_panel 4
-        //mainpage_panel 5
-        //register_panel 6
 
+        setPanelVisible(BodyPanel.MAIN);
 
-        s[5].setVisible(true);
         mainpage_panel.login_btn.addActionListener(e -> {
             // 버튼 클릭 시 실행될 동작 정의
-            s[5].setVisible(false);
-            add(s[0]);
-            s[0].setVisible(true);
+            try
+            {
+                ClientWrapper.get().getClient().login(mainpage_panel.id_txt.getText(), Arrays.toString(mainpage_panel.pwd_txt.getPassword()));
+                setPanelVisible(BodyPanel.PRODUCT_LIST);
+            }
+            catch (ClientException ex)
+            {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         });
 
-        mainpage_panel.sign_btn.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                // 버튼 클릭 시 실행될 동작 정의
-                s[5].setVisible(false);
-                add(s[6]);
-                s[6].setVisible(true);
-
-            }});
-        register_panel.sign_btn.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                // 버튼 클릭 시 실행될 동작 정의
-                s[6].setVisible(false);
-                add(s[5]);
-                s[5].setVisible(true);
-
-            }});
+        mainpage_panel.sign_btn.addActionListener(e -> {
+            // 버튼 클릭 시 실행될 동작 정의
+            setPanelVisible(BodyPanel.REGISTER);
+        });
+        register_panel.sign_btn.addActionListener(e -> {
+            // 버튼 클릭 시 실행될 동작 정의
+            setPanelVisible(BodyPanel.PRODUCT_LIST);
+            try
+            {
+                ClientWrapper.get().getClient().register(register_panel.id_txt.getText(), Arrays.toString(register_panel.pwd_txt.getPassword()));
+            }
+            catch (ClientException ex)
+            {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        });
 
 //        이거 좀 고쳐야 될 듯 서치버튼 누루면 검색되게
-        list_panel.head_panel.search_panel.search_button.addActionListener(new ActionListener() {
+        list_panel.head_panel.search_panel.search_button.addActionListener(e -> {
+        });
+        product_panel.basket_btn.addActionListener(e -> {
+            // 버튼 클릭 시 실행될 동작 정의
 
-            public void actionPerformed(ActionEvent e) {
-                // 버튼 클릭 시 실행될 동작 정의
-                s[0].setVisible(false);
-                add(s[1]);
-                s[1].setVisible(true);
-
-            }});
-        product_panel.basket_btn.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                // 버튼 클릭 시 실행될 동작 정의
-                s[1].setVisible(false);
-                add(s[3]);
-                s[3].setVisible(true);
-
-            }});
-        basket_panel.buy_btn.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                // 버튼 클릭 시 실행될 동작 정의
-                s[3].setVisible(false);
-                add(s[4]);
-                s[4].setVisible(true);
-
-            }});
-
+        });
+        basket_panel.buy_btn.addActionListener(e -> {
+            // 버튼 클릭 시 실행될 동작 정의
+        });
 
         setVisible(true);
-
-
-
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public void setPanelVisible(int number)
+    public void setPanelVisible(BodyPanel panel)
     {
         for (var loop : Panels)
             loop.setVisible(false);
-        Panels[number].setVisible(true);
+        Panels[panel.ordinal()].setVisible(true);
     }
 
     public static void main(String[] args)
@@ -160,7 +129,7 @@ public class ApplicationMain extends JFrame
 
         }
 
-        /*ClientWrapper.init("chuncheon.kimit.kro.kr", 8000); // set address "localhost" when testing.
+        ClientWrapper.init("chuncheon.kimit.kro.kr", 8000); // set address "localhost" when testing. it needs running server.
         try
         {
             ClientWrapper.get().getClient().connect();
@@ -169,7 +138,7 @@ public class ApplicationMain extends JFrame
         {
             JOptionPane.showMessageDialog(null, "서버 연결 실패!", "Error", JOptionPane.ERROR_MESSAGE);
             return;
-        }*/
+        }
         new ApplicationMain();
     }
 }
