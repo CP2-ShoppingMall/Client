@@ -65,15 +65,13 @@ public class ApplicationMain extends JFrame{
 
 
         s[5].setVisible(true);
-        mainpage_panel.login_btn.addActionListener(new ActionListener() {
+        mainpage_panel.login_btn.addActionListener(e -> {
+            // 버튼 클릭 시 실행될 동작 정의
+            s[5].setVisible(false);
+            add(s[0]);
+            s[0].setVisible(true);
+        });
 
-            public void actionPerformed(ActionEvent e) {
-                // 버튼 클릭 시 실행될 동작 정의
-                s[5].setVisible(false);
-                add(s[0]);
-                s[0].setVisible(true);
-
-        }});
         mainpage_panel.sign_btn.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
@@ -108,6 +106,15 @@ public class ApplicationMain extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 // 버튼 클릭 시 실행될 동작 정의
                 s[1].setVisible(false);
+                add(s[3]);
+                s[3].setVisible(true);
+
+            }});
+        basket_panel.buy_btn.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                // 버튼 클릭 시 실행될 동작 정의
+                s[3].setVisible(false);
                 add(s[4]);
                 s[4].setVisible(true);
 
