@@ -1,9 +1,11 @@
 package home.panel.body;
 
 import home.panel.head.HeadPanel;
+import kimit.server.Product;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 //TODO 서버연결
 //상품 리스트 페이지
@@ -13,7 +15,6 @@ public class ListPanel extends JPanel {
             , "겨울 히터기", "멀티탭", "말차 쿠키 로켓프레시"};
     String[] temporary_money = {"1,000,000", "5,000", "950,000", "80,000"
             , "12,000", "10,000"};
-    JLabel[] temporary_title_lables;
     JLabel[] temporary_file_labels;
     ImageIcon[] temporary_icons;
     Image[] temporary_imgs;
@@ -22,6 +23,8 @@ public class ListPanel extends JPanel {
     JButton pre, next;
     int row, column;
     public HeadPanel head_panel;
+    private final Font FONT = new Font("마루 부리OTF", Font.PLAIN, 20);
+    private final Color COLOR = new Color(72,84,81);
     public ListPanel(){
         setSize(500,700);
         setLayout(null);
@@ -88,5 +91,33 @@ public class ListPanel extends JPanel {
         add(pre);
         add(next);setVisible(true);
 
+    }
+
+    public void update(ArrayList<Product> products)
+    {
+        for (int loop = 0; loop < 4 && loop < products.size(); loop++)
+        {
+            temporary_products[loop] = new JPanel();
+            temporary_products[loop].setSize(220, 300);
+            temporary_products[loop].setLayout(null);
+            temporary_products[loop].setBackground(new Color(157,184,177));
+
+            temporary_icons[loop] = new ImageIcon(products.get(loop).getImage().getScaledInstance(220, 230, Image.SCALE_SMOOTH));
+            temporary_file_labels[loop] = new JLabel(temporary_icons[loop]);
+            temporary_file_labels[loop].setBounds(0, 0, 220, 230);
+            temporary_products[loop].add(temporary_file_labels[loop]);
+
+            JLabel title = new JLabel(products.get(loop).getTitle());
+            title.setFont(FONT);
+            title.setBounds(10, 230, 220, 35);
+            title.setForeground(COLOR);
+            temporary_products[loop].add(title);
+
+            JLabel price = new JLabel(products.get(loop).getPriceText());
+            price.setFont(FONT);
+            price.setBounds(10, 260, 220, 35);
+            price.setForeground(COLOR);
+            temporary_products[loop].add(price);
+        }
     }
 }

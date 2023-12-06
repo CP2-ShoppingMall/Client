@@ -10,11 +10,11 @@ import javax.swing.*;
 import java.io.IOException;
 import java.util.Arrays;
 
-public class ApplicationMain extends JFrame
+public class MainFrame extends JFrame
 {
     private final JPanel[] Panels;
 
-    public ApplicationMain()
+    public MainFrame()
     {
         setLayout(null);
         setTitle("CP2-ShoppingMall");
@@ -37,7 +37,7 @@ public class ApplicationMain extends JFrame
         product_panel.setBounds(0,45,500,835);
         add(product_panel);
        //3. 판매자 글 작성 페이지 (0)
-        WritePostPanel write_post_panel = new WritePostPanel();
+        WritePostPanel write_post_panel = new WritePostPanel(this);
         write_post_panel.setBounds(0,45,500,835);
         add(write_post_panel);
         //4. 장바구니 페이지 (0)
@@ -71,6 +71,7 @@ public class ApplicationMain extends JFrame
             try
             {
                 ClientWrapper.get().getClient().login(mainpage_panel.id_txt.getText(), Arrays.toString(mainpage_panel.pwd_txt.getPassword()));
+                list_panel.update(ClientWrapper.get().getClient().product());
                 setPanelVisible(BodyPanel.PRODUCT_LIST);
             }
             catch (ClientException ex)
@@ -118,27 +119,8 @@ public class ApplicationMain extends JFrame
         Panels[panel.ordinal()].setVisible(true);
     }
 
-    public static void main(String[] args)
+    public JPanel[] getPanels()
     {
-        try
-        {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        }
-        catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ignored)
-        {
-
-        }
-
-        ClientWrapper.init("chuncheon.kimit.kro.kr", 8000); // set address "localhost" when testing. it needs running server.
-        try
-        {
-            ClientWrapper.get().getClient().connect();
-        }
-        catch (IOException e)
-        {
-            JOptionPane.showMessageDialog(null, "서버 연결 실패!", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        new ApplicationMain();
+        return Panels;
     }
 }

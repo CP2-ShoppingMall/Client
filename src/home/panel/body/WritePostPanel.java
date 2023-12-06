@@ -1,8 +1,12 @@
 package home.panel.body;
 
+import home.MainFrame;
 import home.library.RoundJTextField;
 import home.library.RoundedButton;
 import home.panel.head.HeadPanel;
+import kimit.api.ClientException;
+import kimit.api.ClientWrapper;
+import kimit.server.Product;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -12,7 +16,9 @@ import java.awt.event.ActionListener;
 
 //TODO
 //판매자 글 작성 페이지
-public class WritePostPanel extends JPanel implements ActionListener {
+public class WritePostPanel extends JPanel implements ActionListener
+{
+    private MainFrame Frame;
     ImageIcon img_icon;
     Image img;
     JLabel img_label, title_label, price_label;
@@ -20,7 +26,9 @@ public class WritePostPanel extends JPanel implements ActionListener {
     JButton img_btn;
     JTextField title_txt, price_txt;
 
-    public WritePostPanel() {
+    public WritePostPanel(MainFrame frame)
+    {
+        Frame = frame;
         setLayout(null);
         setBackground(Color.white);
 
@@ -29,7 +37,6 @@ public class WritePostPanel extends JPanel implements ActionListener {
         head_panel.setBounds(0,0,500,160);
         add(head_panel);
 
-        //TODO 서버연결
         //사진선택
         img_icon = new ImageIcon("src/home/image/icon/chooseimg.png");
         img = img_icon.getImage();
@@ -80,20 +87,23 @@ public class WritePostPanel extends JPanel implements ActionListener {
         complete_btn.setForeground(Color.white);
         complete_btn.setFont(new Font("맑은 고딕", Font.BOLD, 37));
         complete_btn.setBounds(16,730,450,90);
+        complete_btn.addActionListener(this);
 
         add(complete_btn);
 
         setVisible(true);
-
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e)
+    {
         Object source = e.getSource();
-        if(source == img_btn){
+        if(source.equals(img_btn))
+        {
             JFileChooser chooser = new JFileChooser();
             int r = chooser.showOpenDialog(this);
-            if(r==JFileChooser.APPROVE_OPTION){
+            if(r == JFileChooser.APPROVE_OPTION)
+            {
                 String name = chooser.getSelectedFile().getAbsolutePath();
                 //사진 재설정
                 ImageIcon newImgIcon = new ImageIcon(name);
@@ -102,9 +112,20 @@ public class WritePostPanel extends JPanel implements ActionListener {
                 newImgIcon = new ImageIcon(newImg);
                 img_btn.setIcon(newImgIcon);
                 img_btn.setBounds(50, 20, 380, 380);
-
-
             }
+        }
+        else if (source.equals(complete_btn))
+        {
+            ClientWrapper.get().getClient().post(new Product(title_label.getText(), Integer.parseInt(price_txt.getText()), "", ((ImageIcon) img_btn.getIcon()).getImage()));
+            try
+            {
+                ((ListPanel) Frame.getPanels()[BodyPanel.PRODUCT_LIST.ordinal()]).update(ClientWrapper.get().getClient().product());
+            }
+            catch (ClientException ex)
+            {
+                JOptionPane.showMessageDialog(Frame, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            Frame.setPanelVisible(BodyPanel.PRODUCT_LIST);
         }
     }
 }
