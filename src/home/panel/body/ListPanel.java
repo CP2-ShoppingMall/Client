@@ -20,6 +20,9 @@ public class ListPanel extends JPanel {
     JPanel[] temporary_products;
     JPanel product_list_panel;
     JButton pre, next;
+    ImageIcon reload_icon;
+    Image reload_img;
+    JLabel reload;
     int row, column;
     public ListPanel(){
         setSize(500,700);
@@ -73,7 +76,7 @@ public class ListPanel extends JPanel {
         }
         product_list_panel.setBounds(0,140,500,630);
         add(product_list_panel);
-        //상품 목록 다음 페이지
+        //상품 목록 Next, Preview 버튼
         pre = new JButton("◀");
         pre.setBounds(10,780,50,50);
         pre.setBackground(Color.white);
@@ -84,6 +87,15 @@ public class ListPanel extends JPanel {
         next.setBackground(Color.white);
         next.setForeground(new Color(157,184,177));
         next.setBorder(BorderFactory.createLineBorder(new Color(157,184,177)));
+        //새로고침 버튼
+        reload_icon = new ImageIcon("src/home/image/icon/reload.png");
+        reload_img = reload_icon.getImage();
+        reload_img = reload_img.getScaledInstance(45,45,Image.SCALE_SMOOTH);
+        reload_icon = new ImageIcon(reload_img);
+        reload = new JLabel(reload_icon);
+        reload.setBounds(360,782,45,45);
+        add(reload);
+
         add(pre);
         add(next);setVisible(true);
 
