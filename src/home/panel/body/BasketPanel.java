@@ -5,7 +5,6 @@ import home.panel.head.HeadPanel;
 import javax.swing.*;
 import java.awt.*;
 
-//TODO
 //5. 장바구니 페이지
 public class BasketPanel extends JPanel {
     ImageIcon product_icon;
