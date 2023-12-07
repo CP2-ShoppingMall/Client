@@ -51,10 +51,15 @@ public class ApplicationMain extends JFrame
         RegisterPanel register_panel = new RegisterPanel();
         register_panel.setBounds(0,0,500,1200);
         add(register_panel);
+        //8. 검색결과 페이지
+        SearchListPanel search_list_panel = new SearchListPanel();
+        search_list_panel.setBounds(0,45,500,835);
+        add(search_list_panel);
 
-        Panels = new JPanel[]{list_panel, product_panel, write_post_panel, basket_panel, mypage_panel, mainpage_panel, register_panel};
 
-        setPanelVisible(0);
+        Panels = new JPanel[]{list_panel, product_panel, write_post_panel, basket_panel, mypage_panel, mainpage_panel, register_panel, search_list_panel};
+
+        setPanelVisible(7);
 
         //푸터
         FootPanel foot_panel = new FootPanel();
