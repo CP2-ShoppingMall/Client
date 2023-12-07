@@ -18,7 +18,7 @@ import java.awt.event.ActionListener;
 //판매자 글 작성 페이지
 public class WritePostPanel extends JPanel implements ActionListener
 {
-    private MainFrame Frame;
+    private final MainFrame Frame;
     ImageIcon img_icon;
     Image img;
     JLabel img_label, title_label, price_label;
@@ -116,16 +116,9 @@ public class WritePostPanel extends JPanel implements ActionListener
         }
         else if (source.equals(complete_btn))
         {
-            ClientWrapper.get().getClient().post(new Product(title_label.getText(), Integer.parseInt(price_txt.getText()), "", ((ImageIcon) img_btn.getIcon()).getImage()));
-            try
-            {
-                ((ListPanel) Frame.getPanels()[BodyPanel.PRODUCT_LIST.ordinal()]).update(ClientWrapper.get().getClient().product());
-            }
-            catch (ClientException ex)
-            {
-                JOptionPane.showMessageDialog(Frame, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
-            Frame.setPanelVisible(BodyPanel.PRODUCT_LIST);
+            ClientWrapper.get().getClient().post(new Product(title_label.getText(), Integer.parseInt(price_txt.getText()), "", ((ImageIcon) img_btn.getIcon())));
+	        ((ListPanel) Frame.getPanel(BodyPanel.PRODUCT_LIST)).update(ClientWrapper.get().getClient().product());
+	        Frame.setPanelVisible(BodyPanel.PRODUCT_LIST);
         }
     }
 }
