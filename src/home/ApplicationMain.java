@@ -59,7 +59,7 @@ public class ApplicationMain extends JFrame
 
         Panels = new JPanel[]{list_panel, product_panel, write_post_panel, basket_panel, mypage_panel, mainpage_panel, register_panel, search_list_panel};
 
-        setPanelVisible(7);
+        setPanelVisible(5);
 
         //푸터
         FootPanel foot_panel = new FootPanel();
