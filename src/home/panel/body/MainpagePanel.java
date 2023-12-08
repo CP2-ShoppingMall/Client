@@ -1,24 +1,34 @@
 package home.panel.body;
 
+import home.MainFrame;
 import home.library.RoundJPassWordField;
 import home.library.RoundJTextField;
 import home.library.RoundedButton;
 import home.panel.head.TopBarPanel;
+import kimit.api.ClientException;
+import kimit.api.ClientWrapper;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Arrays;
 
-public class MainpagePanel extends JPanel {
+public class MainpagePanel extends JPanel implements ActionListener
+{
+    private final MainFrame Frame;
     ImageIcon logo_icon;
     Image logo_img;
     JLabel logo, id, pwd;
-    RoundJTextField id_txt;
-    RoundJPassWordField pwd_txt;
-    RoundedButton login_btn,sign_btn;
+    public RoundJTextField id_txt;
+    public RoundJPassWordField pwd_txt;
+    public RoundedButton login_btn,sign_btn;
 
 
-    public MainpagePanel(){
+    public MainpagePanel(MainFrame frame)
+    {
+        Frame = frame;
         setLayout(null);
         setBackground(Color.white);
 
@@ -69,27 +79,47 @@ public class MainpagePanel extends JPanel {
         pwd_txt.setBorder(new LineBorder(new Color(157,184,177)));
         add(pwd_txt);
 
-        //TODO 서버연결
         //로그인
         login_btn = new RoundedButton("로그인");
         login_btn.setBackground(new Color(33,39,37));
         login_btn.setForeground(Color.white);
         login_btn.setFont(new Font("맑은 고딕", Font.BOLD, 22));
         login_btn.setBounds(90,605,135,55);
+        login_btn.addActionListener(this);
         add(login_btn);
 
-        //TODO 서버연결
         //회원가입
         sign_btn = new RoundedButton("회원가입");
         sign_btn.setBackground(new Color(33,39,37));
         sign_btn.setForeground(Color.white);
         sign_btn.setFont(new Font("맑은 고딕", Font.BOLD, 22));
         sign_btn.setBounds(260,605,135,55);
+        sign_btn.addActionListener(this);
         add(sign_btn);
 
-
         setVisible(true);
+    }
 
-
+    @Override
+    public void actionPerformed(ActionEvent e)
+    {
+        RoundedButton source = (RoundedButton) e.getSource();
+        if (source.equals(login_btn))
+        {
+            try
+            {
+                ClientWrapper.get().getClient().login(id_txt.getText(), Arrays.toString(pwd_txt.getPassword()));
+                ((ListPanel) Frame.getPanel(BodyPanel.PRODUCT_LIST)).update(ClientWrapper.get().getClient().product());
+                Frame.setPanelVisible(BodyPanel.PRODUCT_LIST);
+            }
+            catch (ClientException ex)
+            {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        else if (source.equals(sign_btn))
+        {
+            Frame.setPanelVisible(BodyPanel.REGISTER);
+        }
     }
 }

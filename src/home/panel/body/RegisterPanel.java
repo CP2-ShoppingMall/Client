@@ -1,25 +1,35 @@
 package home.panel.body;
 
+import home.MainFrame;
 import home.library.RoundJPassWordField;
 import home.library.RoundJTextField;
 import home.library.RoundedButton;
 import home.panel.head.TopBarPanel;
+import kimit.api.ClientException;
+import kimit.api.ClientWrapper;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 //임시
-public class RegisterPanel extends JPanel {
+public class RegisterPanel extends JPanel implements ActionListener
+{
+    private final MainFrame Frame;
     ImageIcon logo_icon;
     Image logo_img;
     JLabel logo, id, pwd, phone, address, email;
-    RoundJTextField id_txt, phone_txt, address_txt, email_txt;
-    RoundJPassWordField pwd_txt;
-    RoundedButton sign_btn;
+    public RoundJTextField id_txt, phone_txt, address_txt, email_txt;
+    public RoundJPassWordField pwd_txt;
+    public RoundedButton sign_btn;
 
 
-    public RegisterPanel(){
+    public RegisterPanel(MainFrame frame)
+    {
+        Frame = frame;
         setLayout(null);
         setBackground(Color.white);
 
@@ -118,18 +128,33 @@ public class RegisterPanel extends JPanel {
         address_txt.setBorder(new LineBorder(new Color(157,184,177)));
         add(address_txt);
 
-
-        //TODO 서버연결
         //회원가입
         sign_btn = new RoundedButton("회원가입");
         sign_btn.setBackground(new Color(33,39,37));
         sign_btn.setForeground(Color.white);
         sign_btn.setFont(new Font("맑은 고딕", Font.BOLD, 22));
         sign_btn.setBounds(140,650,210,55);
+        sign_btn.addActionListener(this);
         add(sign_btn);
 
-
         setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e)
+    {
+        try
+        {
+            ClientWrapper.get().getClient().register(id_txt.getText(), Arrays.toString(pwd_txt.getPassword()));
+        }
+        catch (ClientException ex)
+        {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        finally
+        {
+            Frame.setPanelVisible(BodyPanel.MAIN);
+        }
     }
 }
 
