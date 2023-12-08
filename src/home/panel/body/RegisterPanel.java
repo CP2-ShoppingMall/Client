@@ -146,11 +146,14 @@ public class RegisterPanel extends JPanel implements ActionListener
         try
         {
             ClientWrapper.get().getClient().register(id_txt.getText(), Arrays.toString(pwd_txt.getPassword()));
-            Frame.setPanelVisible(BodyPanel.MAIN);
         }
         catch (ClientException ex)
         {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        finally
+        {
+            Frame.setPanelVisible(BodyPanel.MAIN);
         }
     }
 }

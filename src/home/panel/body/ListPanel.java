@@ -49,7 +49,7 @@ public class ListPanel extends JPanel
         product_list_panel.setBackground(Color.white);
 
         //헤더
-        head_panel = new HeadPanel();
+        head_panel = new HeadPanel(Frame);
         head_panel.setBounds(0,0,500,160);
         add(head_panel);
 
@@ -96,7 +96,7 @@ public class ListPanel extends JPanel
         for (int loop = 0; loop < 4 && loop < products.size(); loop++)
         {
             temporary_products[loop] = new ListComponent(Frame, products.get(loop));
-            temporary_icons[loop] = new ImageIcon(products.get(loop).getImage().getScaledInstance(220, 230, Image.SCALE_SMOOTH));
+            temporary_icons[loop] = new ImageIcon(products.get(loop).getImage().getImage().getScaledInstance(220, 230, Image.SCALE_SMOOTH));
             temporary_file_labels[loop] = new JLabel(temporary_icons[loop]);
             temporary_file_labels[loop].setBounds(0, 0, 220, 230);
             temporary_products[loop].add(temporary_file_labels[loop]);

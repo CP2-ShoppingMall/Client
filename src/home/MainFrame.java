@@ -33,7 +33,7 @@ public class MainFrame extends JFrame
         list_panel.setBounds(0,45,500,835);
         add(list_panel);
         //2. 상품 상세 페이지 (0)
-        ProductPanel product_panel = new ProductPanel();
+        ProductPanel product_panel = new ProductPanel(this);
         product_panel.setBounds(0,45,500,835);
         add(product_panel);
        //3. 판매자 글 작성 페이지 (0)
@@ -41,11 +41,11 @@ public class MainFrame extends JFrame
         write_post_panel.setBounds(0,45,500,835);
         add(write_post_panel);
         //4. 장바구니 페이지 (0)
-        BasketPanel basket_panel = new BasketPanel();
+        BasketPanel basket_panel = new BasketPanel(this);
         basket_panel.setBounds(0,45,500,835);
         add(basket_panel);
         //5. 마이페이지 (구매목록) (0)
-        MypagePanel mypage_panel = new MypagePanel();
+        MypagePanel mypage_panel = new MypagePanel(this);
         mypage_panel.setBounds(0,45,500,835);
         add(mypage_panel);
         //6. 메인 페이지
@@ -57,7 +57,7 @@ public class MainFrame extends JFrame
         register_panel.setBounds(0,0,500,1200);
         add(register_panel);
         //8. 검색결과 페이지
-        SearchListPanel search_list_panel = new SearchListPanel();
+        SearchListPanel search_list_panel = new SearchListPanel(this);
         search_list_panel.setBounds(0, 45, 500, 835);
         add(search_list_panel);
 

@@ -1,5 +1,6 @@
 package home.panel.body;
 
+import home.MainFrame;
 import home.panel.head.HeadPanel;
 import kimit.api.ClientWrapper;
 
@@ -7,23 +8,27 @@ import javax.swing.*;
 import java.awt.*;
 
 //마이 페이지 (구매목록)
-public class MypagePanel extends JPanel {
+public class MypagePanel extends JPanel
+{
+    private final MainFrame Frame;
     ImageIcon product_icon;
     Image product_img;
     JLabel product_img_label, product_title_label, product_price_label, product_label;
 
     JPanel buy_panel;
     JCheckBox buy_cb;
+    private JScrollPane Scroll;
     private final Font FONT = new Font("맑은고딕", Font.BOLD, 24);
     private final Color COLOR = new Color(72,84,81);
 
-    public MypagePanel()
+    public MypagePanel(MainFrame frame)
     {
+        Frame = frame;
         setLayout(null);
         setSize(500,700);
         setBackground(Color.white);
         //헤더
-        HeadPanel head_panel = new HeadPanel();
+        HeadPanel head_panel = new HeadPanel(Frame);
         head_panel.setBounds(0,0,500,160);
         add(head_panel);
 
@@ -40,9 +45,12 @@ public class MypagePanel extends JPanel {
         buy_panel.setLayout(null);
         buy_panel.setBackground(new Color(157,184,177));
         buy_panel.setBounds(0,220,500,200);
-        JScrollPane scrollPane = new JScrollPane(buy_panel);
+        Scroll = new JScrollPane();
+        Scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        Scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        Scroll.setBounds(0, 220, 500, 600);
 
-        //add(scrollPane);
+        //add(Scroll);
         add(buy_panel);
 
         setVisible(true);

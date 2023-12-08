@@ -1,5 +1,6 @@
 package home.panel.body;
 
+import home.MainFrame;
 import home.panel.head.HeadPanel;
 
 import javax.swing.*;
@@ -7,7 +8,9 @@ import java.awt.*;
 
 //TODO 서버연결
 //상품 리스트 페이지
-public class SearchListPanel extends JPanel {
+public class SearchListPanel extends JPanel
+{
+    private final MainFrame Frame;
     //TODO 데이터와 연결할 때, 밑에 배열 처리한 데이터를 List<String> 이런식으로 바꾸시면 될 듯
     String[] search_title = {"말차 쿠키 로켓프레시"};
     String[] search_price = {"10,000"};
@@ -21,7 +24,9 @@ public class SearchListPanel extends JPanel {
     Image reload_img;
     JLabel reload;
     int row, column;
-    public SearchListPanel(){
+    public SearchListPanel(MainFrame frame)
+    {
+        Frame = frame;
         setSize(500,700);
         setLayout(null);
         setBackground(Color.WHITE);
@@ -34,7 +39,7 @@ public class SearchListPanel extends JPanel {
         product_list_panel.setBackground(Color.white);
 
         //헤더
-        HeadPanel head_panel = new HeadPanel();
+        HeadPanel head_panel = new HeadPanel(Frame);
         head_panel.setBounds(0,0,500,160);
         add(head_panel);
 
@@ -98,7 +103,13 @@ public class SearchListPanel extends JPanel {
         add(reload);
 
         add(pre);
-        add(next);setVisible(true);
+        add(next);
+        setVisible(true);
+
+    }
+
+    public void search(String keyword)
+    {
 
     }
 }
