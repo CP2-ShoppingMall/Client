@@ -1,5 +1,6 @@
 package home.panel.body;
 
+import home.MainFrame;
 import home.panel.head.HeadPanel;
 import kimit.api.ClientWrapper;
 import kimit.server.Product;
@@ -13,20 +14,22 @@ import java.util.ArrayList;
 //상품 상세 페이지
 public class ProductPanel extends JPanel implements ActionListener
 {
+    private final MainFrame Frame;
     private Product Product;
     ImageIcon product_icon;
     Image product_img;
     JLabel product_img_label, product_title_label, product_price_label;
     JButton basket_btn, buy_btn;
     JPanel buy_panel;
-    public ProductPanel()
+    public ProductPanel(MainFrame frame)
     {
+        Frame = frame;
         setLayout(null);
         setSize(500,700);
         setBackground(Color.white);
 
         //헤더
-        HeadPanel head_panel = new HeadPanel();
+        HeadPanel head_panel = new HeadPanel(Frame);
         head_panel.setBounds(0,0,500,160);
         add(head_panel);
 

@@ -1,7 +1,9 @@
 package home.panel.footer;
 import home.MainFrame;
 import home.panel.body.BodyPanel;
+import home.panel.body.ListPanel;
 import home.panel.body.MypagePanel;
+import kimit.api.ClientWrapper;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,6 +34,7 @@ public class FootPanel extends JPanel
             @Override
             public void mouseClicked(MouseEvent e)
             {
+                ((ListPanel) Frame.getPanel(BodyPanel.PRODUCT_LIST)).update(ClientWrapper.get().getClient().product());
                 Frame.setPanelVisible(BodyPanel.PRODUCT_LIST);
             }
         });

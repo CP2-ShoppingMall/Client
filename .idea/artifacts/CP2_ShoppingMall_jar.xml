@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CP2_ShoppingMall:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CP2_ShoppingMall_jar</output-path>
+    <root id="archive" name="CP2_ShoppingMall.jar">
+      <element id="module-output" name="CP2_ShoppingMall" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/Server.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
