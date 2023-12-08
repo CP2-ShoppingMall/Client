@@ -18,7 +18,7 @@ import java.awt.event.ActionListener;
 //판매자 글 작성 페이지
 public class WritePostPanel extends JPanel implements ActionListener
 {
-    private MainFrame Frame;
+    private final MainFrame Frame;
     ImageIcon img_icon;
     Image img;
     JLabel img_label, title_label, price_label;
@@ -33,7 +33,7 @@ public class WritePostPanel extends JPanel implements ActionListener
         setBackground(Color.white);
 
         //헤더
-        HeadPanel head_panel = new HeadPanel();
+        HeadPanel head_panel = new HeadPanel(Frame);
         head_panel.setBounds(0,0,500,160);
         add(head_panel);
 
@@ -111,21 +111,15 @@ public class WritePostPanel extends JPanel implements ActionListener
                 newImg = newImg.getScaledInstance(380, 380, Image.SCALE_SMOOTH);
                 newImgIcon = new ImageIcon(newImg);
                 img_btn.setIcon(newImgIcon);
-                img_btn.setBounds(50, 20, 380, 380);
+                img_btn.setBounds(50, 170, 380, 380);
             }
         }
         else if (source.equals(complete_btn))
         {
-            ClientWrapper.get().getClient().post(new Product(title_label.getText(), Integer.parseInt(price_txt.getText()), "", ((ImageIcon) img_btn.getIcon()).getImage()));
-            try
-            {
-                ((ListPanel) Frame.getPanels()[BodyPanel.PRODUCT_LIST.ordinal()]).update(ClientWrapper.get().getClient().product());
-            }
-            catch (ClientException ex)
-            {
-                JOptionPane.showMessageDialog(Frame, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
-            Frame.setPanelVisible(BodyPanel.PRODUCT_LIST);
+            ClientWrapper.get().getClient().post(new Product(title_txt.getText(), Integer.parseInt(price_txt.getText()), "", ((ImageIcon) img_btn.getIcon())));
+            JOptionPane.showMessageDialog(this, "상품 등록이 완료되었습니다.", "Info", JOptionPane.INFORMATION_MESSAGE);
+	        ((ListPanel) Frame.getPanel(BodyPanel.PRODUCT_LIST)).update(ClientWrapper.get().getClient().product());
+	        Frame.setPanelVisible(BodyPanel.PRODUCT_LIST);
         }
     }
 }

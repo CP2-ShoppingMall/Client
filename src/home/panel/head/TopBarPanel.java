@@ -47,13 +47,10 @@ public class TopBarPanel extends JPanel {
         add(wifi);
 
         //시간 동기화
-        timer = new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                time = new Date();
-                String formatedNow = formatter.format(time);
-                jtime.setText(formatedNow);
-            }
+        timer = new Timer(1000, e -> {
+            time = new Date();
+            String formatedNow1 = formatter.format(time);
+            jtime.setText(formatedNow1);
         });
         timer.start();
         setVisible(true);
