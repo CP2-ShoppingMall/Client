@@ -61,14 +61,8 @@ public class MainFrame extends JFrame
         search_list_panel.setBounds(0, 45, 500, 835);
         add(search_list_panel);
 
-<<<<<<< HEAD:src/home/ApplicationMain.java
 
-        Panels = new JPanel[]{list_panel, product_panel, write_post_panel, basket_panel, mypage_panel, mainpage_panel, register_panel, search_list_panel};
-
-        setPanelVisible(5);
-=======
         Panels = new JPanel[] { mainpage_panel, register_panel, list_panel, product_panel, mypage_panel, basket_panel, write_post_panel, search_list_panel };
->>>>>>> d776d11b09bbc5436bf359daa2635bf68434299a:src/home/MainFrame.java
 
         //푸터
         FootPanel foot_panel = new FootPanel(this);
