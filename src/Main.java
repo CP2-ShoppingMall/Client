@@ -17,7 +17,7 @@ public class Main
 
 		}
 
-		ClientWrapper.init("chuncheon.kimit.kro.kr", 8000); // set address "localhost" when testing. it needs running server.
+		ClientWrapper.init("localhost", 8000); // set address "localhost" when testing. it needs running server.
 		try
 		{
 			ClientWrapper.get().getClient().connect();
