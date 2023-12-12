@@ -5,7 +5,6 @@ import home.library.RoundJTextField;
 import home.panel.body.BasketPanel;
 import home.panel.body.BodyPanel;
 import home.panel.body.ListPanel;
-import home.panel.body.SearchListPanel;
 import kimit.api.ClientWrapper;
 import kimit.server.Product;
 
@@ -15,7 +14,6 @@ import java.awt.*;
 import java.util.ArrayList;
 
 //검색창
-//TODO 서버구현
 public class SearchPanel extends JPanel
 {
     private final MainFrame Frame;

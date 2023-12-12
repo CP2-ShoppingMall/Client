@@ -11,18 +11,13 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.stream.IntStream;
 
 //5. 장바구니 페이지
 public class BasketPanel extends JPanel
 {
     private final MainFrame Frame;
-    ImageIcon product_icon;
-    Image product_img;
-    JLabel product_img_label, product_title_label, product_price_label, basket_label;
+    JLabel basket_label;
     public JButton buy_btn;
-    JPanel buy_panel;
-    JCheckBox buy_cb;
     private JPanel ListPanel;
     private ArrayList<Product> SelectedProducts;
     private ArrayList<ListComponent> Components;
@@ -132,11 +127,6 @@ public class BasketPanel extends JPanel
             priceLabel.setForeground(COLOR);
             priceLabel.setBounds(210,50,250,60);
             add(priceLabel);
-        }
-
-        public kimit.server.Product getProduct()
-        {
-            return Product;
         }
 
         @Override

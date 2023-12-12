@@ -11,16 +11,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-//TODO 서버연결
 //상품 리스트 페이지
 public class ListPanel extends JPanel
 {
     private final MainFrame Frame;
-    //TODO 데이터와 연결할 때, 밑에 배열 처리한 데이터를 List<String> 이런식으로 바꾸시면 될 듯
     String[] temporary_title = {"아이폰15", "캡 모자(흰색,회색,검정색)", "갤럭시탭S9 플러스"
             , "겨울 히터기", "멀티탭", "말차 쿠키 로켓프레시"};
-    String[] temporary_money = {"1,000,000", "5,000", "950,000", "80,000"
-            , "12,000", "10,000"};
     JLabel[] temporary_file_labels;
     ImageIcon[] temporary_icons;
     Image[] temporary_imgs;
@@ -30,7 +26,6 @@ public class ListPanel extends JPanel
     ImageIcon reload_icon;
     Image reload_img;
     JButton reload;
-    int row, column;
     public HeadPanel head_panel;
     private final Font FONT = new Font("마루 부리OTF", Font.PLAIN, 20);
     private final Color COLOR = new Color(72,84,81);
@@ -139,11 +134,6 @@ public class ListPanel extends JPanel
                     }
                 }
             });
-        }
-
-        public kimit.server.Product getProduct()
-        {
-            return Product;
         }
     }
 }

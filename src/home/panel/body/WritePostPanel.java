@@ -4,7 +4,6 @@ import home.MainFrame;
 import home.library.RoundJTextField;
 import home.library.RoundedButton;
 import home.panel.head.HeadPanel;
-import kimit.api.ClientException;
 import kimit.api.ClientWrapper;
 import kimit.server.Product;
 
@@ -14,14 +13,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-//TODO
 //판매자 글 작성 페이지
 public class WritePostPanel extends JPanel implements ActionListener
 {
     private final MainFrame Frame;
     ImageIcon img_icon;
     Image img;
-    JLabel img_label, title_label, price_label;
+    JLabel title_label;
     RoundedButton complete_btn;
     JButton img_btn;
     JTextField title_txt, price_txt;

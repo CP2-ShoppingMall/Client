@@ -8,6 +8,5 @@ public enum BodyPanel
 	PRODUCT_DETAIL,
 	MYPAGE,
 	BASKET,
-	WRITE_POST,
-	SEARCH_LIST
+	WRITE_POST
 }

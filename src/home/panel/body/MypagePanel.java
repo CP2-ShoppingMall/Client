@@ -11,12 +11,9 @@ import java.awt.*;
 public class MypagePanel extends JPanel
 {
     private final MainFrame Frame;
-    ImageIcon product_icon;
-    Image product_img;
     JLabel product_img_label, product_title_label, product_price_label, product_label;
 
     JPanel buy_panel;
-    JCheckBox buy_cb;
     private JScrollPane Scroll;
     private final Font FONT = new Font("맑은고딕", Font.BOLD, 24);
     private final Color COLOR = new Color(72,84,81);

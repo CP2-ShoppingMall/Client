@@ -3,12 +3,8 @@ package home;
 import home.panel.body.*;
 import home.panel.footer.FootPanel;
 import home.panel.head.TopBarPanel;
-import kimit.api.ClientException;
-import kimit.api.ClientWrapper;
 
 import javax.swing.*;
-import java.io.IOException;
-import java.util.Arrays;
 
 public class MainFrame extends JFrame
 {
@@ -26,7 +22,6 @@ public class MainFrame extends JFrame
         topbar_panel.setBounds(0,0,500, 45);
         add(topbar_panel);
 
-        ///TODO 해당 코드에서 페이지가 바뀝니다.
         //바디
         //1. 상품 리스트 페이지 (0)
         ListPanel list_panel = new ListPanel(this);
@@ -56,13 +51,8 @@ public class MainFrame extends JFrame
         RegisterPanel register_panel = new RegisterPanel(this);
         register_panel.setBounds(0,0,500,1200);
         add(register_panel);
-        //8. 검색결과 페이지
-        SearchListPanel search_list_panel = new SearchListPanel(this);
-        search_list_panel.setBounds(0, 45, 500, 835);
-        add(search_list_panel);
 
-
-        Panels = new JPanel[] { mainpage_panel, register_panel, list_panel, product_panel, mypage_panel, basket_panel, write_post_panel, search_list_panel };
+        Panels = new JPanel[] { mainpage_panel, register_panel, list_panel, product_panel, mypage_panel, basket_panel, write_post_panel };
 
         //푸터
         FootPanel foot_panel = new FootPanel(this);
@@ -80,11 +70,6 @@ public class MainFrame extends JFrame
         for (var loop : Panels)
             loop.setVisible(false);
         Panels[panel.ordinal()].setVisible(true);
-    }
-
-    public JPanel[] getPanels()
-    {
-        return Panels;
     }
 
     public JPanel getPanel(BodyPanel panel)
